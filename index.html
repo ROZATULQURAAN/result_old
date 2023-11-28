@@ -3,80 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAKTAB - Result</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-            background-color: #686669;
-        }
-
-        h1 {
-            color: #B5C933; /* Green color */
-        }
-
-        h2 {
-            color: #FFA500; /* Orange color for subheading */
-        }
-
-        h3 {
-            color: #B5C933; /* White color for subheading */
-        }
-
-        h4 {
-            color: #FFFFFF; /* White color for subheading */
-        }
-
-        #pdf-container {
-            width: 100%;
-            height: 500px;
-            background-color: #fff; /* White background for PDF container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        label {
-            color: #FFFFFF; /* White  color for labels */
-            margin-right: 10px;
-        }
-
-        input {
-            padding: 8px;
-            margin-right: 10px;
-        }
-
-        button {
-            background-color: #4CAF50; /* Green button */
-            color: #fff; /* White text on the button */
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <title>Password-Protected PDF Viewer</title>
 </head>
 <body>
-    <h1>MADARASA ROZATUL QURAAN</h1>
-    <h3><B>JAMA MASJID, KHARALWADI, PIMPRI, PUNE - 411018</B></h3>
-    <h2>RESULT</h2>
-    <h4>(1st Term - Shashmahi Result) </h4>
-    <label for="pdfName">Name:</label>
-    <input type="text" id="pdfName" placeholder="Talib ka Naam">
-    <button onclick="loadPDF()">Result Dekhen!</button>
-    <div id="pdf-container"></div>
+
+    <h1>Password-Protected PDF Viewer</h1>
+
+    <form id="pdfForm">
+        <label for="pdfName">Enter Password-Protected PDF File Name:</label>
+        <input type="text" id="pdfName" name="pdfName" required>
+        <label for="pdfPassword">Enter PDF Password:</label>
+        <input type="password" id="pdfPassword" name="pdfPassword" required>
+        <button type="button" onclick="displayPDF()">Display PDF</button>
+    </form>
+
+    <div id="pdfContainer">
+        <!-- PDF content will be displayed here -->
+    </div>
 
     <script>
-        function loadPDF() {
-            const pdfName = document.getElementById('pdfName').value;
-            const pdfContainer = document.getElementById('pdf-container');
+        function displayPDF() {
+            var pdfName = document.getElementById('pdfName').value;
+            var pdfPassword = document.getElementById('pdfPassword').value;
+            var pdfContainer = document.getElementById('pdfContainer');
 
-            // Replace 'YOUR_GITHUB_REPO' with your GitHub repository name
-            const pdfUrl = `https://raw.githubusercontent.com/maktab1/result/main/${encodeURIComponent(pdfName)}.pdf`;
+            // Construct the PDF URL based on the entered name
+            var pdfURL = 'https://raw.githubusercontent.com/ROZATULQURAAN/result_old/master/' + pdfName;
 
-            //pdfContainer.innerHTML = `<iframe src="${pdfUrl}" width="100%" height="100%"></iframe>`;
-            pdfContainer.innerHTML = `<embed src="${pdfUrl}" width="100%" height="100%" type="application/pdf" />`;
+            // Embed the PDF using an iframe
+            pdfContainer.innerHTML = '<iframe src="' + pdfURL + '#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="600px"></iframe>';
         }
     </script>
+
 </body>
 </html>
