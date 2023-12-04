@@ -28,7 +28,10 @@
             var pdfContainer = document.getElementById('pdfContainer');
 
             // Construct the PDF URL based on the entered name
-            var pdfURL = 'https://raw.githubusercontent.com/ROZATULQURAAN/result_old/master/' + pdfName;
+            //var pdfURL = 'https://raw.githubusercontent.com/ROZATULQURAAN/result_old/master/' + pdfName;
+            var pdfURL = 'https://raw.githubusercontent.com/ROZATULQURAAN/result_old/master/' + ${encodeURIComponent(pdfName)}.pdf;
+
+            
 
             // Embed the PDF using an iframe
             pdfContainer.innerHTML = '<iframe src="' + pdfURL + '#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="600px"></iframe>';
